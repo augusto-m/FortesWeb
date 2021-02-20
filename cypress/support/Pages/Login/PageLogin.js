@@ -15,7 +15,6 @@ export class pagelogin {
 
     }
 
-
     authenticate() {
         cy.get (email).should('be.visible').clear().type(user_login);
         cy.get (password).clear().type(user_password);
