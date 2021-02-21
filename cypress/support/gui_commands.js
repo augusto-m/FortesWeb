@@ -1,8 +1,15 @@
+let Chance = require ('chance');
+let chance = new Chance();
+
+
+
+
 // Elementos em comum
 
 Cypress.Commands.add('buttonConfirm', () => {
     cy.get('.modal-footer > .btn-primary').click();
 })
+
 
 // ------------------------------------------------------------------------------
 

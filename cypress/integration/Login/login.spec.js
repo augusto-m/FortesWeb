@@ -3,7 +3,7 @@
 context('Testes de login', () => {
     const USERNAME = ('augustomagalhaes@grupofortes.com.br')
 
-    it.only('Login com sucesso', () => {
+    it('Login com sucesso', () => {
         cy.authenticate();
         cy.logout();
     });

@@ -12,7 +12,7 @@ describe('Testes de Usuários', () => {
         cy.deleteUser();
     });
 
-    it.skip('Excluir Usuário', () => {
+    it('Excluir Usuário', () => {
         cy.newUser();
         cy.deleteUser();
     });
@@ -36,7 +36,7 @@ describe('Testes de Usuários', () => {
         })
     });
 
-    //  afterEach(() => {
-    //      cy.logout();
-    //  });
+     afterEach(() => {
+         cy.logout();
+     });
  });
