@@ -1,7 +1,5 @@
-let Chance = require ('chance');
-let chance = new Chance();
-
-
+let Chance = require ('chance')
+let chance = new Chance()
 
 
 // Elementos em comum
@@ -103,12 +101,12 @@ Cypress.Commands.add('getIDUSer', () => {
 // ------------------------------------------------------------------------------
 
 const novoEmail = ('augustomagalhaes@fortestecnologia.com.br')
-const botaoNovoUsuario = ('button[title="F2"]')
-const botaoDeletarUsuario = ('button[title="F4"]')
+const btNovoUsuario = ('button[title="F2"]')
+const btDeletarUsuario = ('button[title="F4"]')
 
 Cypress.Commands.add('newUser', () => {
     cy.visit('/usuarios');
-    cy.get(botaoNovoUsuario).click();
+    cy.get(btNovoUsuario).click();
     cy.get('input[type="email"]').should('be.visible').clear().type(novoEmail);
     cy.get('input[id="contabil_0"]').check();
     cy.get('input[id="fiscal_0"]').check();
@@ -120,7 +118,7 @@ Cypress.Commands.add('deleteUser', () => {
     cy.visit('/usuarios');
     cy.get('input[placeholder="Filtrar"]').should('be.visible').clear().type(novoEmail);
     cy.contains(novoEmail).click();
-    cy.get(botaoDeletarUsuario).click();
+    cy.get(btDeletarUsuario).click();
     cy.buttonConfirm();
     cy.filterUser(novoEmail);
     cy.get('.ag-center-cols-viewport').should('not.contain', novoEmail);
@@ -133,3 +131,35 @@ Cypress.Commands.add('filterUser', (filtrarEmail) => {
 
 
 // ------------------------------------------------------------------------------
+
+// Empresas
+
+// ------------------------------------------------------------------------------
+
+const btNovaEmpresa = ('.btn-primary')
+const btEditarEmpresa = ('[title="F3"]')
+const btExcluirEmpresa = ('.btn-danger')
+const btQuadroSocietario = ('.hbox-gap > :nth-child(5)')
+const btCompartilharEmpresa = ('.hbox-gap > :nth-child(4)')
+
+// const CNPJ_ROOT = ('input[type="text"]')
+// const SOCIAL_DENOMINATION = ('input[name="denominacaoSocial"]')
+// const FANTASY_NAME = ('input[name="denominacaoSocial"]')
+// const DATE_START_ACTIVITY = ('input[name="inicioDeAtividade"]')
+// const COMBO_START_ACTIVITY = ('input[name="inicioDeAtividadePorCisaoOuFusao"]')
+// const DATE_START_FIRST_EXERCISE = ('input[name="inicioDoPrimeiroExercicio"]')
+// const COMBO_START_FIRST_EXERCISE = (':nth-child(6) > .field-group-fields > :nth-child(2) > .lookup > div > .form-control')
+// const COMBO_TAX_REGIME = ('input[name="regimeDeTributacao"]')
+// const COMBO_FRILL_EXCEPTION = ('input[name="tributacaoPrevidenciaria"]')
+// const COMBO_AUDIT = ('[style="width: 80px;"] > .lookup > div > .form-control')
+// const COMBO_ACCOUNTANT = ('input[name="contabilista"]')
+
+Cypress.Commands.add ('newCompanie', () => {
+    cy.visit('/empresas')
+    cy.get(btNovaEmpresa).click()
+    cy.get('input[name="denominacaoSocial"]').type('EmpresaTeste')
+    cy.get('input[name="nome"]').type(chance.company())
+    cy.get('input[name="inicioDeAtividade"]').type(chance.date({string: true}))
+    cy.get('input[name="inicioDeAtividadePorCisaoOuFusao"]').select('por Cisão/Fusão')
+
+})
