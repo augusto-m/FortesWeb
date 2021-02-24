@@ -1,11 +1,12 @@
-let Chance = require ('chance')
+import Chance from '/node_modules/chance'
 let chance = new Chance()
 
+import faker from '/node_modules/faker-br'
 
 // Elementos em comum
 
 Cypress.Commands.add('buttonConfirm', () => {
-    cy.get('.modal-footer > .btn-primary').click();
+    cy.get('.modal-footer > .btn-primary').click()
 })
 
 
@@ -25,30 +26,30 @@ Cypress.Commands.add('authenticate', () => {
         // cy.get('.modal-footer > .btn').click()
         // }
         // else {
-        //     cy.get('input[name = "email"]').should('be.visible').clear().type(Cypress.env('username'));
-        //     cy.get('input[type = "password"]').clear().type(Cypress.env('password'));
-        //     cy.get('button[type = "submit"]').click();
-        //     cy.validateAuthentication();
+        //     cy.get('input[name = "email"]').should('be.visible').clear().type(Cypress.env('username'))
+        //     cy.get('input[type = "password"]').clear().type(Cypress.env('password'))
+        //     cy.get('button[type = "submit"]').click()
+        //     cy.validateAuthentication()
         // }
 
-    cy.get('input[name = "email"]').should('be.visible').clear().type(Cypress.env('username'));
-    cy.get('input[type = "password"]').clear().type(Cypress.env('password'));
-    cy.get('button[type = "submit"]').click();
-    cy.validateAuthentication();
+    cy.get('input[name = "email"]').should('be.visible').clear().type(Cypress.env('username'))
+    cy.get('input[type = "password"]').clear().type(Cypress.env('password'))
+    cy.get('button[type = "submit"]').click()
+    cy.validateAuthentication()
 })
 
 //TODO Fazer esse IF funcionar
 
 Cypress.Commands.add('validateAuthentication', () => {
-        cy.get('.panel-body').should('not.exist');
-        cy.get('img[src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAcCAYAAAB2+A+pAAACKklEQVRIS8VW0TUEQRCsigARIAJEgAxcBIgAETgRIAJEgAgQgROBEwEiaK/m9ezrG7Nub+/umZ97tzvbNV3dVT3EgpeZrQI4AfBB8lbhzewIwDqAa5JfesYF4wpk7CAC2Pf4TwB0oDHJzWUBK8vDloTuSCr7pWSswDctwAOSD52AzUyUrXigL5JrtaBmdgBgC4B+twG8AEjZARALuwBGAAQ8+lVjM9sgqTqpXhsA3gugtdwgZrZNUsG014p9m3/FmQA2s1yfIckLz+K+CJjoMrMhgHNlQ/K4AhwP+CuBBjiAZhxlrQ9qq3ynA98B2HOqRfkzgGP/WDXXuzen+jkBizIAr3NKK2Xomu3eXIG6PvhnJK88idnlFMSfwT8AnHo36pmYEYBcqClJNgUHzgby7fTqsWiXMuRmqXyZav1RXZLGfAlUXZssLi+3RHVyBD8g+ejAcigdVi4VLVMYV41lFjqNGI3YS+5bul3bWnVexmBFBnlPI4cKcE3faRvJTv7/r8DREuel+pukajx1RQORx0aXUnfutDSXNB/NZZD8lxz3mscVOQlcHSrH0VLnS04RtJmxhZy6zWMzE8DlVI7qG/oZiNPz2RM0f6ayjPpYZml1MpBoEvFc5TsNCJlPv3kcJtQFyWHHsZiuM3PNY2+OONwljbIEEwM+DPvyItBtHrfVt7DUVp06Oxoi+Qo0fR7P2VQTn8/cXIsCr9xkYuilXm+7z+NFZTvLPP4BQvxcLhdexhcAAAAASUVORK5CYII="]').should('be.visible');
+        cy.get('.panel-body').should('not.exist')
+        cy.get('[style="display: flex; flex-direction: column; align-items: center; justify-content: center;"] > div > :nth-child(1)').should('be.visible')
 })
 
 Cypress.Commands.add('authenticateTests', (login,password) => {
-    cy.visit('/login');
-    cy.get('input[name = "email"]').should('be.visible').clear().type(login);
-    cy.get('input[type = "password"]').clear().type(password);
-    cy.get('button[type = "submit"]').click();
+    cy.visit('/login')
+    cy.get('input[name = "email"]').should('be.visible').clear().type(login)
+    cy.get('input[type = "password"]').clear().type(password)
+    cy.get('button[type = "submit"]').click()
 })
 
 Cypress.Commands.add('messageError', (message) => {
@@ -56,8 +57,8 @@ Cypress.Commands.add('messageError', (message) => {
 })
 
 Cypress.Commands.add('logout', () => {
-    cy.visit('/logout');
-    cy.get('.inicial-box > figure > img').should('be.visible');
+    cy.visit('/logout')
+    cy.get('.inicial-box > figure > img').should('be.visible')
 })
 
 Cypress.Commands.add('authenticateAPI', () => {
@@ -105,27 +106,27 @@ const btNovoUsuario = ('button[title="F2"]')
 const btDeletarUsuario = ('button[title="F4"]')
 
 Cypress.Commands.add('newUser', () => {
-    cy.visit('/usuarios');
-    cy.get(btNovoUsuario).click();
-    cy.get('input[type="email"]').should('be.visible').clear().type(novoEmail);
-    cy.get('input[id="contabil_0"]').check();
-    cy.get('input[id="fiscal_0"]').check();
-    cy.get('input[id="pessoal_0"]').check();
-    cy.buttonConfirm();
+    cy.visit('/usuarios')
+    cy.get(btNovoUsuario).click()
+    cy.get('input[type="email"]').should('be.visible').clear().type(novoEmail)
+    cy.get('input[id="contabil_0"]').check()
+    cy.get('input[id="fiscal_0"]').check()
+    cy.get('input[id="pessoal_0"]').check()
+    cy.buttonConfirm()
 })
 
 Cypress.Commands.add('deleteUser', () => {
-    cy.visit('/usuarios');
-    cy.get('input[placeholder="Filtrar"]').should('be.visible').clear().type(novoEmail);
-    cy.contains(novoEmail).click();
-    cy.get(btDeletarUsuario).click();
-    cy.buttonConfirm();
-    cy.filterUser(novoEmail);
-    cy.get('.ag-center-cols-viewport').should('not.contain', novoEmail);
+    cy.visit('/usuarios')
+    cy.get('input[placeholder="Filtrar"]').should('be.visible').clear().type(novoEmail)
+    cy.contains(novoEmail).click()
+    cy.get(btDeletarUsuario).click()
+    cy.buttonConfirm()
+    cy.filterUser(novoEmail)
+    cy.get('.ag-center-cols-viewport').should('not.contain', novoEmail)
 })
 
 Cypress.Commands.add('filterUser', (filtrarEmail) => {
-    cy.get('input[placeholder="Filtrar"]').clear().type(filtrarEmail, '{enter}');
+    cy.get('input[placeholder="Filtrar"]').clear().type(filtrarEmail, '{enter}')
 
 })
 
@@ -136,30 +137,50 @@ Cypress.Commands.add('filterUser', (filtrarEmail) => {
 
 // ------------------------------------------------------------------------------
 
-const btNovaEmpresa = ('.btn-primary')
+
 const btEditarEmpresa = ('[title="F3"]')
 const btExcluirEmpresa = ('.btn-danger')
 const btQuadroSocietario = ('.hbox-gap > :nth-child(5)')
 const btCompartilharEmpresa = ('.hbox-gap > :nth-child(4)')
 
-// const CNPJ_ROOT = ('input[type="text"]')
-// const SOCIAL_DENOMINATION = ('input[name="denominacaoSocial"]')
-// const FANTASY_NAME = ('input[name="denominacaoSocial"]')
-// const DATE_START_ACTIVITY = ('input[name="inicioDeAtividade"]')
-// const COMBO_START_ACTIVITY = ('input[name="inicioDeAtividadePorCisaoOuFusao"]')
-// const DATE_START_FIRST_EXERCISE = ('input[name="inicioDoPrimeiroExercicio"]')
-// const COMBO_START_FIRST_EXERCISE = (':nth-child(6) > .field-group-fields > :nth-child(2) > .lookup > div > .form-control')
-// const COMBO_TAX_REGIME = ('input[name="regimeDeTributacao"]')
-// const COMBO_FRILL_EXCEPTION = ('input[name="tributacaoPrevidenciaria"]')
-// const COMBO_AUDIT = ('[style="width: 80px;"] > .lookup > div > .form-control')
-// const COMBO_ACCOUNTANT = ('input[name="contabilista"]')
-
-Cypress.Commands.add ('newCompanie', () => {
+Cypress.Commands.add('newCompany', () => {
     cy.visit('/empresas')
-    cy.get(btNovaEmpresa).click()
-    cy.get('input[name="denominacaoSocial"]').type('EmpresaTeste')
-    cy.get('input[name="nome"]').type(chance.company())
-    cy.get('input[name="inicioDeAtividade"]').type(chance.date({string: true}))
-    cy.get('input[name="inicioDeAtividadePorCisaoOuFusao"]').select('por Cisão/Fusão')
+    cy.get('.btn-primary').click()
+});
+
+
+Cypress.Commands.add('fillCompany', (cnpj, denSocial, nFantasia, iniAtivid, cbIniAtiv, iniPrimExerc, cbIniPrimExerc,
+    regTrib, desFolha, contador, contIss, contICMS, contIPI, municip) => {
+    cy.get('input[name="cnpjRaiz"]').type(cnpj)  
+    cy.get('input[name="denominacaoSocial"]').clear().type(denSocial)
+    cy.get('input[name="nome"]').clear().type(nFantasia)
+    cy.get('input[name="inicioDeAtividade"]').clear().type(iniAtivid)
+    cy.get(':nth-child(5) > .field-group-fields > :nth-child(2) > .lookup > div > .fa').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + cbIniAtiv + ') > div').should('be.visible').click()
+    cy.get('input[name="inicioDoPrimeiroExercicio"]').clear().type(iniPrimExerc)
+    cy.get(':nth-child(6) > .field-group-fields > :nth-child(2) > .lookup > div > .fa').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + cbIniPrimExerc + ') > div').should('be.visible').click()                                      
+    cy.get('[style="width: 150px;"] > .lookup > div > .fa').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + regTrib + ') > div').should('be.visible').click()
+    cy.get(':nth-child(8) > .lookup > div > .fa').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + desFolha + ') > div').should('be.visible').click()
+    cy.get(':nth-child(10) > .lookup > [style="display: inline-block; width: 100%; position: relative;"] > .lookup-arrow > .fa').should('be.visible').click()
+    cy.get('.lookup-item > div').should('be.visible').click()
+    cy.get('[style="width: 126px;"] > .lookup > div > .fa').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + contIss + ') > div').should('be.visible').click()
+    cy.get('[style="width: 138px;"] > .lookup > div > .fa').should('be.visible').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + contICMS + ') > div').should('be.visible').click()
+    cy.get('[style="width: 121px;"] > .lookup > div > .fa').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + contIPI + ') > div').should('be.visible').click()
+    cy.get('[style="width: 214px;"] > .lookup > [style="display: inline-block; width: 100%; position: relative;"] > .lookup-arrow > .fa').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + municip + ') > div').should('be.visible').click()
 
 })
+
+Cypress.Commands.add('newCompanyDefault', () => {
+    cy.newCompany()
+    cy.fillCompany(
+        faker.br.cnpj(), chance.company(), chance.company() + ' TestCase', '01012020', 1, '01022020', 1, 4, 2, 1, 1, 3, 3, 5)
+});
+
+
