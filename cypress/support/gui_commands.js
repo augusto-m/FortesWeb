@@ -143,7 +143,7 @@ const btExcluirEmpresa = ('.btn-danger')
 const btQuadroSocietario = ('.hbox-gap > :nth-child(5)')
 const btCompartilharEmpresa = ('.hbox-gap > :nth-child(4)')
 
-Cypress.Commands.add('newCompany', () => {
+Cypress.Commands.add('createCompany', () => {
     cy.visit('/empresas')
     cy.get('.btn-primary').click()
 });
@@ -178,9 +178,37 @@ Cypress.Commands.add('fillCompany', (cnpj, denSocial, nFantasia, iniAtivid, cbIn
 })
 
 Cypress.Commands.add('newCompanyDefault', () => {
-    cy.newCompany();
+    cy.createCompany()
     cy.fillCompany(
-        faker.br.cnpj(), chance.company(), chance.company() + ' TestCase', '01012020', 1, '01022020', 1, 4, 2, 1, 1, 3, 3, 5)
-});
+        faker.br.cnpj(), chance.company(), chance.company() + ' TestCompanyDefault', '01012020', 1, '01022020', 1, 4, 2, 1, 1, 3, 3, 5)
+    cy.get('.btn-primary').click()
+})
+
+Cypress.Commands.add('newCompany', () => {
+    cy.createCompany()
+    cy.fillCompany(
+        faker.br.cnpj(), chance.company(), chance.company(), '01012020', 1, '01022020', 1, 4, 2, 1, 1, 3, 3, 5)
+    cy.get('.btn-primary').click()
+})
+
+Cypress.Commands.add('filterCompany', (empresa) => {
+    cy.visit('/empresas')
+    cy.get('.form-control').should('be.visible').type(empresa, '{enter}')
+})
+
+Cypress.Commands.add('deleteCompany', () => {
+    cy.get('[row-index="0"] > [aria-colindex="1"]').click()
+    cy.get('.btn-danger').click()
+    cy.buttonConfirm()
+})
+
+
+Cypress.Commands.add('deleteCompanyDefault', () => {
+    cy.filterCompany('TestCompanyDefault')
+    cy.deleteCompany()
+})
+
+
+//TODO Criar deleção de todas as empresas
 
 

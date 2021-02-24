@@ -1,8 +1,5 @@
 /// <reference types = "Cypress" />
 
-import faker from '/node_modules/faker-br'
-
-
 describe('Testes CRUD empresas', () => {
 
     beforeEach(() => {
@@ -10,11 +7,15 @@ describe('Testes CRUD empresas', () => {
     });
 
 
-    it('Nova Empresa', () => {
+    it('Criar Empresa', () => {
         cy.newCompanyDefault()
     });
 
-    // afterEach(() => {
-    //     cy.logout()
-    // });
+    it.skip('Deletar Empresa', () => {
+        cy.deleteCompanyDefault()
+    });
+
+    afterEach(() => {
+        cy.logout()
+    });
 });
