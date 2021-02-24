@@ -11,11 +11,11 @@ describe('Testes CRUD empresas', () => {
         cy.newCompanyDefault()
     });
 
-    it.skip('Deletar Empresa', () => {
+    it('Deletar Empresa', () => {
         cy.deleteCompanyDefault()
     });
 
-    // afterEach(() => {
-    //     cy.logout()
-    // });
+    afterEach(() => {
+        cy.logout()
+    });
 });
