@@ -165,7 +165,7 @@ Cypress.Commands.add('fillCompany', (cnpj, denSocial, nFantasia, iniAtivid, cbIn
     cy.get(':nth-child(8) > .lookup > div > .fa').should('be.visible').click()
     cy.get('.lookup-container > :nth-child(' + desFolha + ') > div').should('be.visible').click()
     cy.get(':nth-child(10) > .lookup > [style="display: inline-block; width: 100%; position: relative;"] > .lookup-arrow > .fa').should('be.visible').click()
-    cy.get('.lookup-item > div').should('be.visible').click()
+    cy.get('.lookup-container > :nth-child(' + contador + ') > div').should('be.visible').click()
     cy.get('[style="width: 126px;"] > .lookup > div > .fa').should('be.visible').click()
     cy.get('.lookup-container > :nth-child(' + contIss + ') > div').should('be.visible').click()
     cy.get('[style="width: 138px;"] > .lookup > div > .fa').should('be.visible').should('be.visible').click()
@@ -178,7 +178,7 @@ Cypress.Commands.add('fillCompany', (cnpj, denSocial, nFantasia, iniAtivid, cbIn
 })
 
 Cypress.Commands.add('newCompanyDefault', () => {
-    cy.newCompany()
+    cy.newCompany();
     cy.fillCompany(
         faker.br.cnpj(), chance.company(), chance.company() + ' TestCase', '01012020', 1, '01022020', 1, 4, 2, 1, 1, 3, 3, 5)
 });
