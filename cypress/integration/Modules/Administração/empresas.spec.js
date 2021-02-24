@@ -15,7 +15,7 @@ describe('Testes CRUD empresas', () => {
         cy.deleteCompanyDefault()
     });
 
-    afterEach(() => {
-        cy.logout()
-    });
+    // afterEach(() => {
+    //     cy.logout()
+    // });
 });
