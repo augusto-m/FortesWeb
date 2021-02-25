@@ -1,0 +1,15 @@
+{
+    "$schema": "https://raw.githubusercontent.com/cypress-io/cypress/develop/cli/schema/cypress.schema.json",
+    //"baseUrl": "https://c0.fortesweb.com.br/#/",
+    "watchForFileChanges": false,
+    "defaultTimeout": 10000,
+    "pageLoadTimeout": 12000,
+    "defaultCommandTimeout": 8000,
+    "viewportWidth": 1280,
+    "viewportHeight": 720,
+    "env":    {
+        "username": "augustomagalhaes@grupofortes.com.br",
+        "password": "12345abcd",
+        "ID": "192"
+    }
+}

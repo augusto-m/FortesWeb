@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Specific file
-cypress.json
+#cypress.json
